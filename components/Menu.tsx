@@ -1,7 +1,7 @@
 "use client";
 import { useMemo, useState } from "react";
 import Image from "next/image";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { Plus, Search } from "lucide-react";
 import { categories, menu } from "@/config/restaurant";
 import { inr } from "@/lib/utils";
@@ -11,6 +11,7 @@ type Filter = "Veg" | "Non-Veg" | "Popular" | "Spicy";
 const filters: Filter[] = ["Veg", "Non-Veg", "Popular", "Spicy"];
 
 export default function Menu({ onAdd }: { onAdd: (id: string) => void }) {
+  const reduce = useReducedMotion();
   const [cat, setCat] = useState<string>("POPULAR");
   const [q, setQ] = useState("");
   const [f, setF] = useState<Filter[]>([]);
@@ -42,7 +43,7 @@ export default function Menu({ onAdd }: { onAdd: (id: string) => void }) {
         <motion.ul layout className="mt-8 grid grid-cols-1 gap-4 min-[480px]:grid-cols-2 lg:grid-cols-3">
           <AnimatePresence mode="popLayout">
             {items.map((m) => (
-              <motion.li layout key={m.id} initial={{ opacity: 0, scale: 0.96 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.96 }} transition={{ duration: 0.3 }} className="flex gap-4 rounded-2xl bg-white p-3 shadow-sm">
+              <motion.li layout key={m.id} initial={{ opacity: 0, scale: 0.96 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.96 }} whileHover={reduce ? undefined : { y: -5, rotateX: 2, rotateY: -1 }} style={{ transformPerspective: 900, transformStyle: "preserve-3d" }} transition={{ duration: 0.3 }} className="flex gap-4 rounded-2xl bg-white p-3 shadow-sm hover:shadow-xl">
                 <div className="relative size-24 shrink-0 overflow-hidden rounded-xl sm:size-28"><Image src={m.img} alt={m.name} fill sizes="112px" className="object-cover" loading="lazy" /></div>
                 <div className="flex min-w-0 flex-1 flex-col">
                   <div className="flex items-start gap-2">

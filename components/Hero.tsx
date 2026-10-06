@@ -1,28 +1,14 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
-import dynamic from "next/dynamic";
+import { useRef } from "react";
 import Image from "next/image";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { Star, ArrowDown } from "lucide-react";
 import { restaurantConfig as r, images } from "@/config/restaurant";
 import { waLink } from "@/lib/utils";
 
-const Hero3D = dynamic(() => import("./Hero3D"), { ssr: false });
-
-function canRun3D() {
-  try {
-    const c = document.createElement("canvas");
-    const gl = !!(c.getContext("webgl2") || c.getContext("webgl"));
-    const nav = navigator as Navigator & { deviceMemory?: number };
-    return gl && window.innerWidth >= 1024 && (nav.deviceMemory ?? 8) >= 4 && (navigator.hardwareConcurrency ?? 8) >= 4;
-  } catch { return false; }
-}
-
 export default function Hero() {
   const ref = useRef<HTMLElement>(null);
   const reduce = useReducedMotion();
-  const [show3D, setShow3D] = useState(false);
-  useEffect(() => { if (!reduce && canRun3D()) setShow3D(true); }, [reduce]);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
   const y = useTransform(scrollYProgress, [0, 1], reduce ? ["0%", "0%"] : ["0%", "18%"]);
   return (
@@ -31,7 +17,6 @@ export default function Hero() {
         <Image src={images.hero} alt="Slow-cooked chicken biryani served at AURA" fill priority sizes="100vw" className="object-cover" />
       </motion.div>
       <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/50 to-black/30" />
-      {show3D && <div className="pointer-events-none absolute inset-0"><Hero3D /></div>}
       <div className="relative mx-auto w-full max-w-7xl px-5 pb-28 pt-32 md:pb-24">
         <motion.div initial={reduce ? false : { opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}>
           <h1 className="font-display text-[22vw] leading-[0.85] tracking-tight md:text-[12rem]">{r.name}</h1>

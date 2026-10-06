@@ -27,9 +27,9 @@ export default function Story() {
   return (
     <section id="about" className="mx-auto max-w-7xl px-5 py-20 md:py-28">
       <div className="grid items-center gap-12 lg:grid-cols-2">
-        <div ref={box} className="relative aspect-[4/5] overflow-hidden rounded-[2rem]">
+        <div ref={box} className="relative aspect-[4/5] overflow-hidden rounded-[2rem]" style={{ perspective: 1000, transformStyle: "preserve-3d" }}>
           <motion.div style={{ y: back }} className="absolute -inset-10"><Image src={images.story} alt="The AURA dining room" fill sizes="(min-width:1024px) 45vw, 100vw" className="object-cover" /></motion.div>
-          <motion.div style={{ y: front }} className="absolute bottom-4 right-4 rounded-2xl bg-bg/90 p-4 text-primary shadow-xl backdrop-blur"><p className="font-display text-xl">Since 2010</p></motion.div>
+          <motion.div style={{ y: front, z: 36 }} className="absolute bottom-4 right-4 rounded-2xl bg-bg/90 p-4 text-primary shadow-xl backdrop-blur"><p className="font-display text-xl">Since 2010</p></motion.div>
         </div>
         <div>
           <SectionHeading title="From our kitchen to your table" />

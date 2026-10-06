@@ -8,5 +8,5 @@ body{background:rgb(var(--bg));color:rgb(var(--text));overflow-x:hidden}
  .btn{@apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold tracking-wide transition duration-300 hover:-translate-y-0.5 active:scale-95 min-h-[44px]}
  .btn-primary{@apply bg-primary text-secondary hover:shadow-lg hover:shadow-primary/30}
  .btn-gold{@apply bg-accent text-ink hover:brightness-110}
- .btn-ghost{@apply border border-current/40 hover:bg-white/10}
+ .btn-ghost{@apply border border-secondary/40 hover:bg-white/10}
 }

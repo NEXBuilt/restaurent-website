@@ -1,11 +1,7 @@
 import type { Metadata, Viewport } from "next";
-import { Playfair_Display, Inter } from "next/font/google";
 import "./globals.css";
 import { restaurantConfig as r } from "@/config/restaurant";
 import { hexToRgb } from "@/lib/utils";
-
-const display = Playfair_Display({ subsets: ["latin"], variable: "--font-display", display: "swap" });
-const body = Inter({ subsets: ["latin"], variable: "--font-body", display: "swap" });
 
 export const metadata: Metadata = {
   metadataBase: new URL(r.url),
@@ -18,7 +14,10 @@ export const viewport: Viewport = { themeColor: r.colors.primary, viewportFit: "
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const c = r.colors;
-  const theme = { "--primary": hexToRgb(c.primary), "--secondary": hexToRgb(c.secondary), "--accent": hexToRgb(c.accent), "--bg": hexToRgb(c.background), "--text": hexToRgb(c.text) } as React.CSSProperties;
+  const theme = {
+    "--primary": hexToRgb(c.primary), "--secondary": hexToRgb(c.secondary), "--accent": hexToRgb(c.accent), "--bg": hexToRgb(c.background), "--text": hexToRgb(c.text),
+    "--font-display": "Georgia, 'Times New Roman', serif", "--font-body": "Arial, Helvetica, sans-serif",
+  } as React.CSSProperties;
   const schema = {
     "@context": "https://schema.org", "@type": "Restaurant", name: r.name, description: r.description, url: r.url,
     telephone: r.phone, priceRange: r.priceRange, servesCuisine: r.cuisine, image: `${r.url}/og.jpg`, hasMenu: `${r.url}/#menu`,
@@ -26,7 +25,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     aggregateRating: { "@type": "AggregateRating", ratingValue: r.rating, reviewCount: r.reviewCount },
   };
   return (
-    <html lang="en" className={`${display.variable} ${body.variable}`} style={theme}>
+    <html lang="en" style={theme}>
       <body className="font-sans antialiased">
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
         {children}
