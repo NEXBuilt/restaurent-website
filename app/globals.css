@@ -10,3 +10,15 @@ body{background:rgb(var(--bg));color:rgb(var(--text));overflow-x:hidden}
  .btn-gold{@apply bg-accent text-ink hover:brightness-110}
  .btn-ghost{@apply border border-secondary/40 hover:bg-white/10}
 }
+
+/* Performance-friendly replacements for JS-driven reveal/hover animations. */
+.reveal { animation: aura-reveal 0.55s ease-out both; }
+@keyframes aura-reveal { from { opacity: 0; transform: translate3d(0, 18px, 0); } to { opacity: 1; transform: translate3d(0, 0, 0); } }
+@media (prefers-reduced-motion: reduce) {
+  .reveal { animation: none; }
+  *, *::before, *::after { scroll-behavior: auto !important; transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+}
+.menu-card { transition: transform 180ms ease, box-shadow 180ms ease; }
+.menu-card:hover { transform: translateY(-3px); box-shadow: 0 18px 35px rgba(36, 33, 33, 0.10); }
+.hero-content { animation: hero-enter 0.65s cubic-bezier(.22,1,.36,1) both; }
+@keyframes hero-enter { from { opacity: 0; transform: translate3d(0, 22px, 0); } to { opacity: 1; transform: translate3d(0, 0, 0); } }

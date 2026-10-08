@@ -1,4 +1,4 @@
-const u = (id: string, w = 1200) => `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${w}&q=75`;
+const u = (id: string, w = 1000) => `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${w}&q=65`;
 
 export const restaurantConfig = {
   name: "AURA",
@@ -27,10 +27,10 @@ export const restaurantConfig = {
 };
 
 export const images = {
-  hero: u("photo-1563379091339-03b21ab4a4f8", 1800),
+  hero: u("photo-1563379091339-03b21ab4a4f8", 1400),
   story: u("photo-1517248135467-4c7edcad34c4", 1000),
-  experience: u("photo-1414235077428-338989a2e8c0", 1800),
-  gallery: [u("photo-1563379091339-03b21ab4a4f8", 800), u("photo-1414235077428-338989a2e8c0", 800), u("photo-1517248135467-4c7edcad34c4", 800), u("photo-1567188040759-fb8a883dc6d8", 800), u("photo-1555939594-58d7cb561ad1", 800), u("photo-1504674900247-0877df9cc836", 800)],
+  experience: u("photo-1414235077428-338989a2e8c0", 1400),
+  gallery: [u("photo-1563379091339-03b21ab4a4f8", 700), u("photo-1414235077428-338989a2e8c0", 700), u("photo-1517248135467-4c7edcad34c4", 700), u("photo-1567188040759-fb8a883dc6d8", 700), u("photo-1555939594-58d7cb561ad1", 700), u("photo-1504674900247-0877df9cc836", 700)],
 };
 
 export type Category = "STARTERS" | "BIRYANI" | "MAIN COURSE" | "VEGETARIAN" | "SEAFOOD" | "DESSERTS" | "DRINKS";
